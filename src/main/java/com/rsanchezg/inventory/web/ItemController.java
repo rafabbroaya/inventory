@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = {"x-auth-token", "x-requested-with", "x-xsrf-token"})
 public class ItemController {
 
   @RequestMapping("/items")
