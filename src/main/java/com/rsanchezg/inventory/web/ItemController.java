@@ -1,8 +1,9 @@
 package com.rsanchezg.inventory.web;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import com.rsanchezg.inventory.business.service.ItemService;
+import com.rsanchezg.inventory.domain.entity.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", allowedHeaders = {"x-auth-token", "x-requested-with", "x-xsrf-token"})
 public class ItemController {
 
+  @Autowired
+  ItemService itemService;
+
   @RequestMapping("/items")
-  public Map<String, Object> getItems() {
-    Map<String, Object> items = new HashMap<>();
-    items.put("id", UUID.randomUUID());
-    items.put("content", "Hello World");
-    return items;
+  public Iterable<Item> getItems(Pageable pageable) {
+    return itemService.getItems(pageable);
   }
 }
