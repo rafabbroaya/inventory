@@ -16,6 +16,7 @@ public class Item {
   private Long id;
   private BigDecimal sellingPrice;
   private String description;
+  private byte[] image;
 
   public Long getId() {
     return id;
@@ -39,5 +40,13 @@ public class Item {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(byte[] image) {
+    this.image = image;
   }
 }
