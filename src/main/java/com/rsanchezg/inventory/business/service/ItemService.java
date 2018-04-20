@@ -4,7 +4,6 @@ import com.rsanchezg.inventory.business.model.ItemDto;
 import com.rsanchezg.inventory.domain.entity.Item;
 import com.rsanchezg.inventory.domain.repository.ItemRepository;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,22 +26,15 @@ public class ItemService {
 
     for (Item item : items
         ) {
-      ItemDto itemDto = parseItemDto(item);
+      ItemDto itemDto = new ItemDto(item);
       itemsDto.add(itemDto);
     }
-    return new PageImpl<ItemDto>(itemsDto, pageable, items.getTotalPages());
+    return new PageImpl<>(itemsDto, pageable, items.getTotalPages());
   }
 
-  private ItemDto parseItemDto(Item item) {
-    return new ItemDto(item.getId(), item.getSellingPrice(), item.getDescription(),
-        encodeImageBase64(item.getImage()));
+  public ItemDto addItem(ItemDto itemDto) {
+    Item item = itemRepository.save(new Item(itemDto));
+    return new ItemDto(item);
   }
 
-  private String encodeImageBase64(byte[] image) {
-    if (image != null) {
-      byte[] encode = Base64.getEncoder().encode(image);
-      return new String(encode);
-    }
-    return null;
-  }
 }

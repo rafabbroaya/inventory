@@ -8,6 +8,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
@@ -35,7 +36,9 @@ public class InventoryApplication extends SpringBootServletInitializer {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-      http.cors().and().authorizeRequests().anyRequest().authenticated();
+      http.cors().and().authorizeRequests()
+          .antMatchers(HttpMethod.GET).permitAll()
+          .anyRequest().authenticated();
     }
   }
 }

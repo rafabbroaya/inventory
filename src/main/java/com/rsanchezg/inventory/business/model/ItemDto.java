@@ -1,11 +1,14 @@
 package com.rsanchezg.inventory.business.model;
 
+import com.rsanchezg.inventory.domain.entity.Item;
+import com.rsanchezg.inventory.util.Utils;
 import java.math.BigDecimal;
 
 /**
  * @author raasanch
  */
 public class ItemDto {
+
   private Long id;
   private BigDecimal sellingPrice;
   private String description;
@@ -16,6 +19,13 @@ public class ItemDto {
     this.sellingPrice = sellingPrice;
     this.description = description;
     this.base64Image = base64Image;
+  }
+
+  public ItemDto(Item item) {
+    this.id = item.getId();
+    this.sellingPrice = item.getSellingPrice();
+    this.description = item.getDescription();
+    this.base64Image = Utils.encodeImageBase64(item.getImage());
   }
 
   public Long getId() {
