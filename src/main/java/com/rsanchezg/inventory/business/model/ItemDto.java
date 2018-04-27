@@ -3,6 +3,7 @@ package com.rsanchezg.inventory.business.model;
 import com.rsanchezg.inventory.domain.entity.Item;
 import com.rsanchezg.inventory.util.Utils;
 import java.math.BigDecimal;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author raasanch
@@ -10,9 +11,14 @@ import java.math.BigDecimal;
 public class ItemDto {
 
   private Long id;
+  @NotNull
   private BigDecimal sellingPrice;
+  @NotNull
   private String description;
   private String base64Image;
+
+  public ItemDto() {
+  }
 
   public ItemDto(Long id, BigDecimal sellingPrice, String description, String base64Image) {
     this.id = id;

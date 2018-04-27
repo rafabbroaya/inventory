@@ -5,6 +5,7 @@ import com.rsanchezg.inventory.business.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public class ItemController {
   }
 
   @PostMapping("/items")
-  public ItemDto addItem(@RequestBody ItemDto item) {
+  public ItemDto addItem(@RequestBody @Validated ItemDto item) {
     return itemService.addItem(item);
   }
 

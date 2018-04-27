@@ -38,7 +38,7 @@ public class InventoryApplication extends SpringBootServletInitializer {
     protected void configure(HttpSecurity http) throws Exception {
       http.cors().and().authorizeRequests()
           .antMatchers(HttpMethod.GET).permitAll()
-          .anyRequest().authenticated();
+          .anyRequest().authenticated().and().csrf().disable();
     }
   }
 }

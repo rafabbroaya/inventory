@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author raasanch
@@ -16,9 +17,14 @@ public class Item {
   @Id
   @GeneratedValue
   private Long id;
+  @NotNull
   private BigDecimal sellingPrice;
+  @NotNull
   private String description;
   private byte[] image;
+
+  public Item() {
+  }
 
   public Item(BigDecimal sellingPrice, String description, byte[] image) {
     this.sellingPrice = sellingPrice;
