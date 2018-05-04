@@ -37,4 +37,8 @@ public class ItemService {
     return new ItemDto(item);
   }
 
+  public ItemDto getItem(Long id) {
+    return new ItemDto(itemRepository.findOne(id));
+  }
+
 }

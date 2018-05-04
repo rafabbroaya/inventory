@@ -14,15 +14,21 @@ public class ItemDto {
   @NotNull
   private BigDecimal sellingPrice;
   @NotNull
+  private Long stock;
+  @NotNull
+  private String name;
   private String description;
   private String base64Image;
 
   public ItemDto() {
   }
 
-  public ItemDto(Long id, BigDecimal sellingPrice, String description, String base64Image) {
+  public ItemDto(Long id, BigDecimal sellingPrice, Long stock, String name,
+      String description, String base64Image) {
     this.id = id;
     this.sellingPrice = sellingPrice;
+    this.stock = stock;
+    this.name = name;
     this.description = description;
     this.base64Image = base64Image;
   }
@@ -30,6 +36,8 @@ public class ItemDto {
   public ItemDto(Item item) {
     this.id = item.getId();
     this.sellingPrice = item.getSellingPrice();
+    this.name = item.getName();
+    this.stock = item.getStock();
     this.description = item.getDescription();
     this.base64Image = Utils.encodeImageBase64(item.getImage());
   }
@@ -48,6 +56,22 @@ public class ItemDto {
 
   public void setSellingPrice(BigDecimal sellingPrice) {
     this.sellingPrice = sellingPrice;
+  }
+
+  public Long getStock() {
+    return stock;
+  }
+
+  public void setStock(Long stock) {
+    this.stock = stock;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getDescription() {

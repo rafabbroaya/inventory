@@ -32,7 +32,7 @@ public class ItemServiceTest {
 
   @Before
   public void setup() {
-    mockItem = new Item(new BigDecimal("16.50"), "", null);
+    mockItem = new Item(new BigDecimal("16.50"), 10L, "", "", null);
     given(this.itemRepository.save(mockItem)).willReturn(mockItem);
   }
 

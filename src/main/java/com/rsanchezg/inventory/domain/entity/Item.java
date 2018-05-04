@@ -20,20 +20,27 @@ public class Item {
   @NotNull
   private BigDecimal sellingPrice;
   @NotNull
+  private Long stock;
+  @NotNull
+  private String name;
   private String description;
   private byte[] image;
 
   public Item() {
   }
 
-  public Item(BigDecimal sellingPrice, String description, byte[] image) {
+  public Item(BigDecimal sellingPrice, Long stock, String name, String description, byte[] image) {
     this.sellingPrice = sellingPrice;
+    this.stock = stock;
+    this.name = name;
     this.description = description;
     this.image = image;
   }
 
   public Item(ItemDto itemDto) {
     this.sellingPrice = itemDto.getSellingPrice();
+    this.stock = itemDto.getStock();
+    this.name = itemDto.getName();
     this.description = itemDto.getDescription();
     this.image = Utils.decodeImageBase64(itemDto.getBase64Image());
   }
@@ -52,6 +59,22 @@ public class Item {
 
   public void setSellingPrice(BigDecimal sellingPrice) {
     this.sellingPrice = sellingPrice;
+  }
+
+  public Long getStock() {
+    return stock;
+  }
+
+  public void setStock(Long stock) {
+    this.stock = stock;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getDescription() {
