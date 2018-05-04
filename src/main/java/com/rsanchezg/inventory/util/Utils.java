@@ -22,6 +22,9 @@ public final class Utils {
     if (base64Image == null || "".equalsIgnoreCase(base64Image)) {
       return null;
     }
+    if (base64Image.contains(",")) {
+      base64Image = base64Image.split(",")[1];
+    }
     return Base64.getDecoder().decode(base64Image);
   }
 
